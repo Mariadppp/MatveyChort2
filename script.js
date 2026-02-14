@@ -44,6 +44,28 @@ let t8Out = document.querySelector("[data-js='t8-out']")
 let t9Btn = document.querySelector("[data-js='t9-toggle']")
 let t9Text = document.querySelector("[data-js='t9-text']")
 
+let t14Btn = document.querySelector('[data-js="t14-next"]');
+let t14Out = document.querySelector('[data-js="t14-out"]');
+
+let quotes = [
+    "удали холлоу найт",
+    "Мне нравится думать, что он флексит на твоей голове, отопучто там подушка похожа на твою шапку",
+    "Хорошо что не Политех заканчивал",
+    "Эээ унь пунь ээээ(пародия)",
+    "чорт",
+    "Хочу орешки биг боб. Я принесу на матвея.",
+    "Чем дальше в лес скибиди доп ЕС ес",
+    "газ",
+    "дате орео",
+    "тихо",
+    "Надеюсь он упомянуть меня в своем новом прохождении фнаф 67"
+];
+
+t14Btn.addEventListener("click", () => {
+  let randomIndex = Math.floor(Math.random() * quotes.length);
+  t14Out.textContent = quotes[randomIndex];
+})
+
 t1Btn.addEventListener("click", () => {
   let r;
   let g;
