@@ -44,8 +44,27 @@ let t8Out = document.querySelector("[data-js='t8-out']")
 let t9Btn = document.querySelector("[data-js='t9-toggle']")
 let t9Text = document.querySelector("[data-js='t9-text']")
 
-let t14Btn = document.querySelector('[data-js="t14-next"]');
-let t14Out = document.querySelector('[data-js="t14-out"]');
+let t10Range = document.querySelector("[data-js='t10-range']")
+let t10Out  = document.querySelector("[data-js='t10-out']")
+let t10Box = document.querySelector("[data-js='t10-box']")
+
+let t11Seconds = document.querySelector("[data-js='t11-seconds")
+let t11Start = document.querySelector("[data-js='t11-start']")
+let t11Stop = document.querySelector("[data-js='t11-stop']")
+let t11Out = document.querySelector("[data-js='t11-out']")
+
+let t12Plus = document.querySelector("[data-js='t12-plus']")
+let t12Label = document.querySelector("[data-js='t12-label']")
+let t12Bar = document.querySelector("[data-js='t12-bar']")
+
+let t13Input = document.querySelector("[data-js='t13-input']")
+let t13Out = document.querySelector("[data-js='t13-out']")
+
+let t14Btn = document.querySelector("[data-js='t14-next']")
+let t14Out = document.querySelector("[data-js='t14-out']")
+
+let t16Animate = document.querySelector("[data-js='t16-animate']")
+let t16Box = document.querySelector("[data-js='t16-box']")
 
 let quotes = [
     "удали холлоу найт",
@@ -191,4 +210,43 @@ t9Btn.addEventListener("click", () => {
     t9Btn.textContent = "Скрыть";
     win = "open"
   }
+})
+
+t10Range.addEventListener("input", () => {
+  t10Box.style.width = `${t10Range.value}px`
+  t10Box.style.height = `${t10Range.value}px`
+  t10Out.textContent = `${t10Range.value}px`
+})
+
+let time = 0
+t11Start.addEventListener("click", () => {
+  time = t11Seconds.value
+  const timer = setInterval(() => {
+    time--;
+    t11Out.textContent = time;
+    if(time <= 0) {
+      t11Out.value = 0
+      clearInterval(timer)
+    }
+  }, 1000)
+})
+t11Stop.addEventListener("click", () => {
+  time = 0
+})
+
+let bar = 0
+t12Plus.addEventListener("click", () => {
+  bar = Math.min(bar + 10, 100)
+  t12Bar.style.width = `${bar}%`
+  t12Label.textContent = `${bar}%`
+})
+
+t13Input.addEventListener("keydown", (e) => {
+  if (e.key === 'Escape'){
+    t13Input.blur()
+  }
+})
+
+t16Animate.addEventListener("click", () => {
+  t16Box.classList.toggle("is-animate")
 })
