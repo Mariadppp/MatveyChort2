@@ -297,3 +297,208 @@ document.addEventListener('mouseup', () => {
 t16Animate.addEventListener("click", () => {
   t16Box.classList.toggle("is-animate")
 })
+
+let t17Area = document.querySelector("[data-js='t17-area']")
+
+let t18Area = document.querySelector("[data-js='t18-area']")
+
+let t19Area = document.querySelector("[data-js='t19-area']")
+
+let t20Area = document.querySelector("[data-js='t20-area']")
+let t20Score = document.querySelector("[data-js='t20-score']")
+let score20 = 0
+
+let t21Score = document.querySelector("[data-js='t21-score']")
+let t21Lives = document.querySelector("[data-js='t21-lives']")
+let t21Area = document.querySelector("[data-js='t21-area']")
+let t21Restart = document.querySelector("[data-js='t21-restart']")
+let t21GameOver = document.querySelector("[data-js='t21-game-over']")
+
+function CreateDiv () {
+  let x = Math.floor(Math.random() * 660)
+  let y = Math.floor(Math.random() * 220)
+  let div = document.createElement("div")
+  div.style.position = 'absolute'
+  div.style.width = '100px'
+  div.style.height = '100px'
+  div.style.background = '#111'
+  div.style.backgroundImage = 'url(assets/img.jpg)'
+  div.style.backgroundSize = 'cover'
+  div.style.left = `${x}px`
+  div.style.bottom = `${y}px`
+  t17Area.append(div)
+}
+setInterval(CreateDiv, 1000)
+
+setInterval(CreateDiv18, 2000)
+function CreateDiv18 () {
+  let x = t18Area.clientWidth
+  let newDiv18 = document.createElement("div")
+  newDiv18.style.position = 'absolute'
+  newDiv18.style.width = '140px'
+  newDiv18.style.height = '120px'
+  newDiv18.style.background = '#111'
+  newDiv18.style.backgroundImage = 'url(assets/img2.jpg)'
+  newDiv18.style.backgroundSize = 'cover'
+  newDiv18.style.left = `${x}px`
+  newDiv18.style.bottom = '100px'
+  t18Area.append(newDiv18)
+  requestAnimationFrame(() => animateDiv(newDiv18))
+}
+function animateDiv(newDiv18) {
+    let currentLeft = parseInt(newDiv18.style.left);
+    let nextLeft = currentLeft - 1;
+    newDiv18.style.left = `${nextLeft}px`;
+    if (nextLeft + newDiv18.offsetWidth <= 0) {
+      newDiv18.remove();
+      return;
+    }
+
+    requestAnimationFrame(() => animateDiv(newDiv18));
+  }
+
+  setInterval(createDivAndMove, 1000);
+
+  function createDivAndMove() {
+    let newDiv19 = document.createElement("div");
+    newDiv19.className = "box";
+    newDiv19.style.position = 'absolute'
+    newDiv19.style.width = '120px'
+    newDiv19.style.height = '100px'
+    newDiv19.style.background = '#111'
+    newDiv19.style.backgroundImage = 'url(assets/img3.jpg)'
+    newDiv19.style.backgroundSize = 'cover'
+    t19Area.append(newDiv19);
+    newDiv19.style.position = "absolute";
+    let randomHeight = Math.floor(Math.random()*(t19Area.clientHeight - 100));
+    newDiv19.style.top = `${randomHeight}px`;
+    newDiv19.style.left = `${t19Area.clientWidth}px`;
+    requestAnimationFrame(() => animateDiv(newDiv19));
+  }
+  function animateDiv(newDiv19) {
+    let currentLeft = parseInt(newDiv19.style.left);
+    let nextLeft = currentLeft - 1;
+    newDiv19.style.left = `${nextLeft}px`;
+    if (nextLeft + newDiv19.offsetWidth <= 0) {
+      newDiv19.remove();
+      return;
+    }
+
+    requestAnimationFrame(() => animateDiv(newDiv19));
+  }
+
+setInterval(CreateDiv20, 500)
+
+function CreateDiv20 () {
+  let x = Math.floor(Math.random() * 660)
+  let y = Math.floor(Math.random() * 220)
+  let newDiv20 = document.createElement("div20")
+  newDiv20.style.position = 'absolute'
+  newDiv20.style.width = '100px'
+  newDiv20.style.height = '100px'
+  newDiv20.style.background = '#111'
+  newDiv20.style.backgroundImage = 'url(assets/img4.jpg)'
+  newDiv20.style.backgroundSize = 'cover'
+  newDiv20.style.left = `${x}px`
+  newDiv20.style.bottom = `${y}px`
+  t20Area.append(newDiv20)
+  newDiv20.addEventListener("click", () => {
+    newDiv20.remove()
+    score20++
+    t20Score.textContent = score20
+    if(score20 == 67) {
+      let Img = document.createElement("div")
+      Img.style.position = 'absolute'
+      Img.style.width = '400px'
+      Img.style.height = '400px'
+      Img.style.backgroundImage = ('url(assets/img5.jpg')
+      Img.style.backgroundSize = 'cover'
+      Img.style.left = `200px`
+      Img.style.bottom = `0`
+      t20Area.append(Img)
+    }
+  })
+}
+
+
+let lives = 3;
+let score = 0;
+let gameInterval;
+let gameActive = true;
+
+function updateUI() {
+  t21Score.textContent = score;
+  t21Lives.textContent = lives;
+}
+
+gameInterval = setInterval(createDivAndMove1, 500);
+
+function createDivAndMove1() {
+  if (!gameActive || lives <= 0) return;
+
+  let newDiv21 = document.createElement("div");
+  newDiv21.className = "box";
+  newDiv21.style.position = 'absolute';
+  newDiv21.style.width = '120px';
+  newDiv21.style.height = '120px';
+  newDiv21.style.backgroundImage = 'url(assets/img6.jpg)';
+  newDiv21.style.backgroundSize = 'cover';
+  t21Area.append(newDiv21);
+
+  newDiv21.addEventListener("click", () => {
+  newDiv21.remove()
+    score++
+    updateUI()
+  })
+  
+  let randomHeight = Math.floor(Math.random() * (t21Area.clientHeight - 100));
+  newDiv21.style.top = `${randomHeight}px`;
+  newDiv21.style.left = `${t21Area.clientWidth}px`;
+
+  requestAnimationFrame(() => animateDiv1(newDiv21));
+}
+
+function animateDiv1(newDiv21) {
+  if (!gameActive || lives <= 0) {
+    return;
+  }
+  if (!document.body.contains(newDiv21)) {
+    return;
+  }
+  let currentLeft = parseInt(newDiv21.style.left);
+  let nextLeft = currentLeft - 3;
+  newDiv21.style.left = `${nextLeft}px`;
+
+  if (nextLeft + newDiv21.offsetWidth <= 0) {
+    newDiv21.remove();
+    lives -= 1;
+    console.log(lives);
+    updateUI();
+
+    if (lives === 0) {
+      gameActive = false;
+      clearInterval(gameInterval);
+      t21GameOver.style.display = 'block';
+      t21Restart.style.display = 'block'
+    }
+    return;
+  }
+
+  requestAnimationFrame(() => animateDiv1(newDiv21));
+}
+
+function restartGame() {
+  lives = 3;
+  score = 0;
+  gameActive = true;
+  
+  updateUI();
+
+  document.querySelectorAll('.box').forEach(box => box.remove());
+  
+  t21GameOver.style.display = 'none';
+  
+  if (gameInterval) clearInterval(gameInterval);
+  gameInterval = setInterval(createDivAndMove1, 1300);
+}
+t21Restart.addEventListener('click', restartGame);
