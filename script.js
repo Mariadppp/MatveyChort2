@@ -63,6 +63,10 @@ let t13Out = document.querySelector("[data-js='t13-out']")
 let t14Btn = document.querySelector("[data-js='t14-next']")
 let t14Out = document.querySelector("[data-js='t14-out']")
 
+let t15Area = document.querySelector("[data-js='t15-area']")
+let t15Coords = document.querySelector("[data-js='t15-coords']")
+let t15Item = document.querySelector("[data-js='t15-item']")
+
 let t16Animate = document.querySelector("[data-js='t16-animate']")
 let t16Box = document.querySelector("[data-js='t16-box']")
 
@@ -245,6 +249,49 @@ t13Input.addEventListener("keydown", (e) => {
   if (e.key === 'Escape'){
     t13Input.blur()
   }
+})
+
+function handleKeyDown(e) {
+  const isCtrl = e.ctrlKey || e.metaKey;
+  if (!isCtrl) return;
+  e.preventDefault();
+  let key = e.key.toLowerCase();
+  if (key === 'k' || key === 'л') {
+    e.preventDefault();
+    if (e.shiftKey) {
+      t13Input.value = ''
+      t13Out.textContent = 'последняя комбинация: Ctrl+Shift+K' }
+      else {
+        t13Input.focus()
+        t13Input.textContent = '(Ctrl+K)'
+        t13Out.textContent = 'последняя комбинация: Ctrl+K'
+      }
+  }
+}
+document.addEventListener('keydown', handleKeyDown);
+
+let down
+let t15X
+let t15Y
+t15Item.addEventListener("mousedown", (e) => {
+  let itemRect = t15Item.getBoundingClientRect()
+  down = true
+  t15X = e.clientX - itemRect.left
+  t15Y = e.clientY - itemRect.top
+})
+
+document.addEventListener("mousemove", (e) => {
+  let itemRect = t15Item.getBoundingClientRect()
+  if(!down) return
+  let areaRect = t15Area.getBoundingClientRect()
+  let x = Math.min(Math.max(e.clientX - areaRect.left - t15X, 0), areaRect.width - itemRect.width);
+  let y = Math.min(Math.max(e.clientY - areaRect.top  - t15Y, 0), areaRect.height - itemRect.height);
+  t15Coords.textContent = `x: ${x}, y: ${y}`;
+  t15Item.style.left = x + 'px';
+  t15Item.style.top  = y + 'px';
+})
+document.addEventListener('mouseup', () => {
+  down = false;
 })
 
 t16Animate.addEventListener("click", () => {
